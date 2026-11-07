@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olympia-Eck</title>
+<meta name="description" content="Olympia-Eck: die letzte Anlaufstelle vor dem Südtor des Olympiastadions Berlin. Imbiss, großer Biergarten mit ca. 300 Plätzen und Treffpunkt vor Veranstaltungen im Stadion und in der Waldbühne.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23211D18'/%3E%3Cellipse cx='32' cy='34' rx='22' ry='14' fill='none' stroke='%23B14B2C' stroke-width='4'/%3E%3Cellipse cx='32' cy='34' rx='13' ry='8' fill='none' stroke='%23B08D46' stroke-width='3'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#211D18">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-src 'none'; connect-src 'self'; base-uri 'self'; form-action 'self';">
+<style>
+  /* Self-hosted fonts (DSGVO): no request to Google's servers just to
+     render text. If a file below is missing, the generic fallback in
+     each --font-* variable (sans-serif / serif / monospace) is used
+     instead — the page still looks intentional, never "broken". */
+  @font-face{ font-family:'Bebas Neue'; src:url('fonts/BebasNeue-Regular.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:'Source Serif 4'; src:url('fonts/SourceSerif4-Regular.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:'Source Serif 4'; src:url('fonts/SourceSerif4-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:'Source Serif 4'; src:url('fonts/SourceSerif4-Bold.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+  @font-face{ font-family:'Source Serif 4'; src:url('fonts/SourceSerif4-BoldItalic.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+  @font-face{ font-family:'Space Mono'; src:url('fonts/SpaceMono-Regular.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face{ font-family:'Space Mono'; src:url('fonts/SpaceMono-Bold.woff2') format('woff2'); font-weight:700; font-style:italic; font-display:swap; }
+</style>
+<style>
+  :root{
+    --ink:#211D18;
+    --ink-soft:#37332C;
+    --paper:#F1EFE9;
+    --paper-deep:#DDD8CB;
+    --cinder:#37332C;
+    --cinder-dark:#7E3018;
+    --cinder-light:#D98A63;
+    --green:#6E6B64;
+    --brass:#B08D46;
+    --brass-light:#D9BE86;
+    /* Stone / concrete greys — the Olympiastadion's natural stone façade.
+       Used as the structural, architectural neutral: header, footer, the
+       stadium section, card frames and secondary UI — kept distinct from
+       the warm charcoal ink used behind food and biergarten content. */
+    --stone-100:#E9E8E6;
+    --stone-300:#C8C6C1;
+    --stone-500:#94918A;
+    --stone-600:#6E6B64;
+    --stone-700:#524F49;
+    --stone-800:#3B3936;
+    --stone-900:#282725;
+    --white:#FFFDF6;
+    --surface:#F7F6F2;
+    --shadow: 0 20px 40px -20px rgba(33,29,24,0.35);
+    --shadow-soft: 0 10px 24px -14px rgba(33,29,24,0.28);
+    --font-display:'Bebas Neue', serif;
+    --font-body:'Source Serif 4', Georgia, serif;
+    --font-mono:'Space Mono', monospace;
+    --radius: 6px;
+    --dur: 0.5s;
+    --ease: cubic-bezier(.22,.68,.16,1);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; font-family:var(--font-body); color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased; line-height:1.6; overflow-x:hidden; }
+  body.nav-lock{ overflow:hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  h1,h2,h3,h4{ font-family:var(--font-display); letter-spacing:0.02em; font-weight:400; margin:0; line-height:1.02; }
+  p{ margin:0 0 0.9em; }
+  ul{ margin:0; padding:0; }
+  .container{ width:min(1180px, 92%); margin-inline:auto; }
+  .visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  :focus-visible{ outline:3px solid var(--brass); outline-offset:3px; }
+
+  .eyebrow{
+    font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.2em; font-size:0.72rem;
+    color:var(--cinder-dark); display:inline-flex; align-items:center; gap:0.6em; margin-bottom:0.9em;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--cinder); display:inline-block; }
+  .on-dark .eyebrow{ color:var(--brass-light); }
+  .on-dark .eyebrow::before{ background:var(--brass-light); }
+  /* Architectural / wayfinding sections (location, directions, legal) use
+     stone-grey eyebrows instead of cinder — a quiet colour-code that marks
+     "structure & information" apart from "food & event" content. */
+  .eyebrow-stone{ color:var(--stone-600); }
+  .eyebrow-stone::before{ background:var(--stone-600); }
+
+  /* Subtle poured-concrete grain for the stadium/structural surfaces */
+  .concrete-texture{ position:relative; isolation:isolate; }
+  .concrete-texture::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.05; mix-blend-mode:overlay;
+  }
+  .concrete-texture > *{ position:relative; z-index:1; }
+
+  .btn{
+    font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.08em; font-size:0.78rem; font-weight:700;
+    padding:0.95em 1.8em; border-radius:999px; border:2px solid transparent;
+    display:inline-flex; align-items:center; gap:0.6em; cursor:pointer; text-decoration:none;
+    transition:transform var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .btn-primary{ background:var(--cinder); color:var(--white); border-color:var(--cinder); }
+  .btn-primary:hover{ background:var(--cinder-dark); border-color:var(--cinder-dark); transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; color:var(--white); border-color:rgba(255,253,246,0.5); }
+  .btn-ghost:hover{ border-color:var(--brass-light); color:var(--brass-light); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:var(--stone-800); border-color:var(--stone-700); }
+  .btn-outline:hover{ background:var(--stone-800); border-color:var(--stone-800); color:var(--paper); transform:translateY(-2px); }
+
+  .lane-divider{ height:10px; background-image:repeating-linear-gradient(90deg, var(--cinder) 0 34px, transparent 34px 54px); opacity:0.5; }
+
+  /* ---- Header ---- */
+  .site-header{ position:sticky; top:0; z-index:100; background:linear-gradient(180deg, rgba(44,46,41,0.96) 0%, rgba(61,63,57,0.92) 100%); backdrop-filter:blur(8px); border-bottom:1px solid rgba(198,200,193,0.15); }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding:1.2em 0; transition:padding var(--dur) var(--ease); }
+  .site-header.scrolled .header-inner{ padding:0.65em 0; }
+  .logo{ display:flex; align-items:center; gap:0.6em; text-decoration:none; color:var(--white); font-family:var(--font-display); font-size:1.4rem; letter-spacing:0.06em; min-height:34px; }
+  .logo .logo-img{ height:34px; width:auto; max-width:220px; object-fit:contain; }
+  .logo-fallback-mark{ display:none; align-items:center; gap:0.6em; }
+  .logo.logo-fallback .logo-fallback-mark{ display:flex; }
+  .logo-fallback-mark svg{ width:32px; height:32px; flex-shrink:0; }
+  .main-nav{ display:flex; align-items:center; gap:1.9em; }
+  .main-nav a{ font-family:var(--font-mono); font-size:0.76rem; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; color:var(--white); opacity:0.78; position:relative; padding-bottom:6px; display:flex; align-items:center; gap:0.7em; }
+  .main-nav a::after{ content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--cinder-light); transition:width var(--dur) var(--ease); }
+  .main-nav a:hover, .main-nav a.active{ opacity:1; }
+  .main-nav a.active::after, .main-nav a:hover::after{ width:100%; }
+  .nav-icon{ display:none; width:19px; height:19px; flex-shrink:0; color:var(--brass-light); }
+
+  /* Toggle button: glass square, morphs into a brass "×" when open */
+  .nav-toggle{
+    display:none; appearance:none; align-items:center; justify-content:center;
+    background:rgba(230,231,226,0.08); border:1.5px solid rgba(230,231,226,0.3);
+    border-radius:11px; width:46px; height:44px; cursor:pointer; position:relative;
+    transition:background var(--dur) var(--ease), border-color var(--dur) var(--ease), transform 0.2s var(--ease);
+  }
+  .nav-toggle:hover{ background:rgba(230,231,226,0.15); border-color:rgba(217,190,134,0.6); }
+  .nav-toggle:active{ transform:scale(0.93); }
+  .nav-toggle[aria-expanded="true"]{ background:rgba(217,190,134,0.14); border-color:var(--brass-light); }
+  /* Three independent bars — not pseudo-elements — so each one animates
+     on its own with no containing-block or opacity-group surprises. */
+  .nav-toggle-bar{
+    position:absolute; left:13px; right:13px; height:2px; border-radius:2px; background:var(--white);
+    transition:transform 0.4s cubic-bezier(.65,0,.35,1), opacity 0.25s ease, background var(--dur) ease;
+  }
+  .nav-toggle-bar--top{ top:14px; }
+  .nav-toggle-bar--mid{ top:21px; }
+  .nav-toggle-bar--bottom{ top:28px; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar--mid{ opacity:0; transform:scaleX(0); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar--top{ top:21px; transform:rotate(45deg); background:var(--brass-light); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar--bottom{ top:21px; transform:rotate(-45deg); background:var(--brass-light); }
+
+  /* Dimmed backdrop behind the mobile flyout — purely visual now; the
+     actual "tap outside to close" logic lives in the document click
+     listener in the script, so this never needs to be pixel-perfect. */
+  .nav-backdrop{
+    position:fixed; inset:0; z-index:95; background:rgba(15,16,14,0.68); backdrop-filter:blur(3px);
+    opacity:0; pointer-events:none; transition:opacity var(--dur) var(--ease);
+  }
+  .nav-backdrop.open{ opacity:1; pointer-events:auto; }
+
+  @media (min-width:901px){ .nav-backdrop{ display:none; } }
+
+  @media (max-width:900px){
+    .nav-toggle{ display:flex; }
+    .nav-icon{ display:block; }
+    .main-nav{
+      position:fixed; inset:0 0 0 auto; z-index:98; width:min(320px, 84vw); height:100vh; height:100dvh;
+      background:linear-gradient(165deg, var(--stone-900) 0%, var(--stone-800) 100%);
+      flex-direction:column; align-items:stretch; justify-content:center; gap:0.3em; padding:2em 1.6em;
+      transform:translateX(100%); transition:transform 0.45s cubic-bezier(.22,.68,.16,1);
+      border-left:3px solid var(--cinder); box-shadow:-24px 0 48px -20px rgba(0,0,0,0.4);
+    }
+    .main-nav.open{ transform:translateX(0); }
+    .main-nav a{
+      font-size:1rem; padding:0.85em 0.7em; border-radius:9px;
+      opacity:0; transform:translateX(18px);
+      transition:opacity 0.4s ease, transform 0.4s ease, background var(--dur) ease;
+    }
+    .main-nav a::after{ display:none; }
+    .main-nav a:hover, .main-nav a:focus-visible{ background:rgba(230,231,226,0.08); }
+    .main-nav a.active{ background:rgba(177,75,44,0.18); color:var(--brass-light); }
+    .main-nav a.active .nav-icon{ color:var(--cinder-light); }
+    .main-nav.open a{ opacity:1; transform:none; }
+    .main-nav.open a:nth-child(1){ transition-delay:0.08s; }
+    .main-nav.open a:nth-child(2){ transition-delay:0.13s; }
+    .main-nav.open a:nth-child(3){ transition-delay:0.18s; }
+    .main-nav.open a:nth-child(4){ transition-delay:0.23s; }
+    .main-nav.open a:nth-child(5){ transition-delay:0.28s; }
+    .main-nav.open a:nth-child(6){ transition-delay:0.33s; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .main-nav, .main-nav a, .nav-backdrop, .nav-toggle-bar{ transition:none !important; }
+  }
+
+  /* ---- Photo slot (placeholder-aware image block) ---- */
+  .photo-slot{ position:relative; overflow:hidden; border-radius:var(--radius); background:linear-gradient(150deg, var(--stone-900) 0%, var(--stone-700) 100%); aspect-ratio: var(--ar, 4/3); }
+  .photo-slot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .photo-slot.is-empty img{ display:none; }
+  .slot-fallback{ display:none; }
+  .photo-slot.is-empty .slot-fallback{ display:flex; }
+  .slot-fallback{ position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:0.7em; padding:1.6em; text-align:center; color:rgba(255,253,246,0.55); }
+  .slot-fallback svg{ width:34px; height:34px; opacity:0.55; }
+  .slot-fallback span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.03em; line-height:1.5; max-width:22em; }
+  .photo-slot--overlay::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(33,29,24,0.15) 0%, rgba(33,29,24,0.78) 100%); }
+  .photo-slot--overlay .overlay-content{ position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; }
+
+  /* ---- Reveal ---- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+  .reveal.in-view{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; } }
+
+  section{ padding:5em 0; }
+  .section-dark{ background:linear-gradient(165deg, var(--stone-900) 0%, var(--stone-700) 100%); color:var(--white); }
+  .section-green{ background:var(--green); color:var(--white); }
+
+  /* ---- Hero ---- */
+  .hero{ position:relative; min-height:clamp(560px, 92vh, 920px); display:flex; align-items:flex-end; overflow:hidden; }
+  /* On narrow phones, a height based on *viewport height* creates a tall,
+     narrow box — but the source photos are wide landscape shots, so
+     object-fit:cover has to crop away most of the width to fill it,
+     leaving only a thin vertical sliver visible. Basing the height on
+     *viewport width* instead keeps the box's shape close to the photos'
+     own aspect ratio, so far more of each photo actually shows. */
+  @media (max-width:700px){
+    .hero{ min-height:0; height:clamp(420px, 108vw, 620px); }
+  }
+
+  .hero-carousel{ position:absolute; inset:0; z-index:0; }
+  .hero-slide{
+    position:absolute; inset:0; overflow:hidden;
+    background:linear-gradient(150deg, var(--stone-900) 0%, var(--stone-700) 100%);
+    opacity:0; transition:opacity 1.4s var(--ease);
+  }
+  .hero-slide.active{ opacity:1; z-index:1; }
+  .hero-slide img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .hero-slide.is-empty img{ display:none; }
+  .hero-slide .slot-fallback{ display:none; }
+  .hero-slide.is-empty .slot-fallback{ display:flex; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:0.7em; padding:1.6em; text-align:center; color:rgba(255,253,246,0.5); }
+  .hero-slide .slot-fallback svg{ width:32px; height:32px; opacity:0.5; }
+  .hero-slide .slot-fallback span{ font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.03em; line-height:1.5; max-width:20em; }
+  .hero-carousel-gradient{ position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(180deg, rgba(44,46,41,0.2) 0%, rgba(30,31,28,0.84) 100%); }
+  .hero-dots{ position:absolute; top:1.3em; right:1.3em; z-index:3; display:flex; gap:0.3em; }
+  .hero-dot{ width:26px; height:26px; border-radius:50%; border:none; background:transparent; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; -webkit-tap-highlight-color:transparent; }
+  .hero-dot::after{ content:""; width:9px; height:9px; border-radius:50%; border:2px solid rgba(255,253,246,0.55); transition:background var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease); display:block; }
+  .hero-dot.active::after{ background:var(--brass-light); border-color:var(--brass-light); transform:scale(1.15); }
+  @media (prefers-reduced-motion: reduce){ .hero-slide{ transition:none; } }
+
+  .hero-content{ position:relative; z-index:4; width:100%; padding:3.5em 0 3.2em; }
+  .hero-content h1{ font-size:clamp(2.8rem, 10vw, 7.2rem); color:var(--white); margin-bottom:0.1em; }
+  .hero-content .tagline{ font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.14em; font-size:0.9rem; color:var(--brass-light); margin-bottom:1em; }
+  .hero-lines{ margin-bottom:1.6em; }
+  .hero-lines p{ font-size:1.35rem; color:var(--white); margin:0; font-family:var(--font-body); font-weight:600; }
+  .hero-lines p:first-child{ color:rgba(255,253,246,0.86); font-weight:400; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:1em; }
+
+  /* ---- Two column layout ---- */
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:3em; align-items:center; }
+  @media (max-width:860px){ .split{ grid-template-columns:1fr; } }
+  .split.reverse .split-media{ order:2; }
+  @media (max-width:860px){ .split.reverse .split-media{ order:0; } }
+  .split-copy h2{ font-size:clamp(2rem, 4.2vw, 2.9rem); margin-bottom:0.5em; }
+  .split-copy p{ font-size:1.05rem; color:var(--ink-soft); max-width:32em; }
+  .on-dark .split-copy p{ color:rgba(255,253,246,0.85); }
+
+  /* ---- Event comparison cards ---- */
+  .event-cards{ display:grid; grid-template-columns:1fr 1fr; gap:1.4em; margin-top:2em; }
+  @media (max-width:700px){ .event-cards{ grid-template-columns:1fr; } }
+  .event-card{ background:var(--surface); border:1px solid var(--stone-300); border-radius:var(--radius); padding:1.8em; box-shadow:var(--shadow-soft); }
+  .event-card h3{ color:var(--cinder-dark); font-size:1.5rem; margin-bottom:0.5em; }
+  .event-card .tag{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--cinder-dark); }
+  .event-card p{ color:var(--ink-soft); font-size:0.98rem; margin-top:0.6em; margin-bottom:0; }
+
+  /* ---- Scoreboard ---- */
+  .scoreboard{ background:linear-gradient(165deg, var(--stone-900) 0%, #202119 100%); border:3px solid var(--stone-600); box-shadow: inset 0 0 0 2px var(--brass), var(--shadow); border-radius:8px; padding:2.4em 1.8em; display:grid; grid-template-columns:repeat(4,1fr); gap:1.4em; }
+  @media (max-width:760px){ .scoreboard{ grid-template-columns:repeat(2,1fr); } }
+  .score-cell{ text-align:center; padding:0.5em; border-right:1px dashed rgba(241, 240, 240, 0.35); }
+  .score-cell:last-child{ border-right:none; }
+  @media (max-width:760px){ .score-cell:nth-child(2n){ border-right:none; } }
+  .score-num{ font-family:var(--font-mono); font-weight:700; font-size:clamp(1.9rem,4.6vw,2.7rem); color:var(--brass-light); display:block; font-variant-numeric:tabular-nums; }
+  .score-label{ font-size:0.72rem; letter-spacing:0.03em; color:rgb(233, 231, 231); display:block; margin-top:0.4em; }
+
+  /* ---- Menu ---- */
+  .menu-tabs{ display:flex; gap:0.6em; flex-wrap:wrap; margin:2em 0; border-bottom:2px solid var(--paper-deep); padding-bottom:1.2em; }
+  .menu-tab{ font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em; font-size:0.78rem; background:transparent; border:1px solid var(--ink); border-radius:999px; padding:0.65em 1.3em; cursor:pointer; color:var(--ink); transition:background var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .menu-tab[aria-selected="true"]{ background:var(--ink); color:var(--paper); }
+  .menu-panel{ display:none; }
+  .menu-panel.active{ display:block; }
+  .menu-list{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0 2.4em; }
+  @media (max-width:700px){ .menu-list{ grid-template-columns:1fr; } }
+  .menu-list li{ display:flex; align-items:baseline; gap:0.6em; padding:0.8em 0; border-bottom:1px dotted var(--paper-deep); font-size:1rem; }
+  .menu-list li::before{ content:"—"; color:var(--cinder); flex-shrink:0; }
+  .menu-note{ margin-top:2em; padding:1.1em 1.4em; background:var(--paper-deep); border-left:4px solid var(--cinder); font-size:0.9rem; color:var(--ink-soft); border-radius:0 var(--radius) var(--radius) 0; }
+
+  /* ---- Grill band ---- */
+  .grill-band{ position:relative; }
+  .grill-band .photo-slot{ border-radius:0; aspect-ratio:auto; min-height:520px; --ar:auto; }
+  .grill-band .overlay-content{ justify-content:center; align-items:flex-start; padding:0; }
+  .grill-inner{ position:relative; z-index:2; }
+  .grill-band h2{ font-size:clamp(2.6rem,7vw,4.6rem); color:var(--white); }
+  .grill-band p{ color:rgba(255,253,246,0.88); font-size:1.1rem; max-width:30em; }
+
+  /* ---- Reservation alert ---- */
+  .alert-band{ background:var(--cinder); color:var(--white); padding:2.6em 0; }
+  .alert-inner{ display:flex; gap:1.4em; align-items:flex-start; }
+  .alert-inner svg{ width:34px; height:34px; flex-shrink:0; margin-top:2px; }
+  .alert-inner h3{ font-size:1.4rem; margin-bottom:0.4em; text-transform:uppercase; letter-spacing:0.02em; }
+  .alert-inner p{ margin:0 0 0.4em; font-size:1.02rem; color:rgba(255,253,246,0.95); }
+  .alert-inner p:last-child{ margin-bottom:0; }
+
+  /* ---- Hours ---- */
+  .hours-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6em; }
+  @media (max-width:760px){ .hours-grid{ grid-template-columns:1fr; } }
+  .hours-card{ background:var(--surface); border:1px solid var(--stone-300); border-radius:var(--radius); padding:1.8em 2em; box-shadow:var(--shadow-soft); }
+  .hours-card h3{ font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--cinder-dark); margin-bottom:0.8em; }
+  .hours-row{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:1.05rem; padding:0.5em 0; border-bottom:1px dotted var(--paper-deep); }
+  .hours-row:last-child{ border-bottom:none; }
+  .hours-card p{ color:var(--ink-soft); font-size:0.96rem; }
+
+  /* ---- Self-service strip ---- */
+  .strip{ background:var(--stone-100); padding:1.6em 0; }
+  .strip-inner{ display:flex; align-items:center; gap:1em; justify-content:center; text-align:center; flex-wrap:wrap; }
+  .strip-inner svg{ width:24px; height:24px; color:var(--stone-700); flex-shrink:0; }
+  .strip-inner p{ margin:0; font-size:0.95rem; color:var(--ink-soft); }
+  .strip-inner strong{ color:var(--ink); }
+
+  /* ---- Visit ---- */
+  .visit-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:2.2em; }
+  @media (max-width:900px){ .visit-grid{ grid-template-columns:1fr; } }
+  .visit-cards{ display:grid; gap:1em; align-content:start; }
+  .visit-card{ background:var(--surface); border:1px solid var(--stone-300); border-radius:var(--radius); padding:1.3em 1.4em; display:flex; gap:1em; align-items:flex-start; box-shadow:var(--shadow-soft); }
+  .visit-card--link{ text-decoration:none; color:inherit; transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .visit-card--link:hover, .visit-card--link:focus-visible{ transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--cinder); }
+  .map-link-hint{ display:inline-block; margin-top:0.6em; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.04em; color:var(--cinder-dark); }
+  .visit-card svg{ width:24px; height:24px; color:var(--cinder); flex-shrink:0; margin-top:2px; }
+  .visit-card h4{ font-family:var(--font-body); font-weight:700; font-size:1rem; margin-bottom:0.2em; }
+  .visit-card a{ text-decoration:none; }
+  .visit-card a:hover{ color:var(--cinder-dark); }
+  .no-map-panel{
+    border:1px solid var(--stone-300); border-radius:var(--radius); overflow:hidden; min-height:320px; height:100%; box-shadow:var(--shadow-soft);
+    background:linear-gradient(150deg, var(--stone-100) 0%, var(--paper) 100%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.9em; text-align:center; padding:2.4em 1.8em;
+  }
+  .no-map-panel svg{ width:38px; height:38px; color:var(--stone-600); }
+  .no-map-panel h3{ font-family:var(--font-body); font-weight:700; font-size:1.05rem; color:var(--ink); margin:0; }
+  .no-map-panel p{ max-width:26em; font-size:0.9rem; color:var(--ink-soft); margin:0; }
+  .south-gate-note{ display:flex; align-items:center; gap:0.7em; margin-top:1em; font-family:var(--font-mono); font-size:0.82rem; color:var(--stone-600); }
+  .south-gate-note svg{ width:20px; height:20px; }
+
+  /* ---- Legal ---- */
+  .legal-block{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:2.2em; }
+  @media (max-width:900px){ .legal-block{ grid-template-columns:1fr; } }
+  .impressum-card{ background:var(--surface); border:1px solid var(--stone-300); border-radius:var(--radius); padding:1.7em 1.9em; font-size:0.96rem; }
+  .impressum-card dt{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--stone-600); margin-top:1em; }
+  .impressum-card dt:first-child{ margin-top:0; }
+  .impressum-card dd{ margin:0.15em 0 0; }
+  .accordion-trigger{ width:100%; text-align:left; background:none; border:0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1em; padding:1em 0; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.05em; font-size:0.82rem; color:var(--ink); border-bottom:1px solid var(--paper-deep); }
+  .accordion-trigger .plus{ font-size:1.3rem; transition:transform var(--dur) var(--ease); flex-shrink:0; color:var(--cinder); }
+  .accordion-trigger[aria-expanded="true"] .plus{ transform:rotate(45deg); }
+  .accordion-panel{ overflow:hidden; max-height:0; transition:max-height 0.5s var(--ease); }
+  .accordion-panel-inner{ padding:1.2em 0 1.6em; font-size:0.92rem; color:var(--ink-soft); }
+  .accordion-panel-inner h5{ font-family:var(--font-body); font-weight:700; font-size:0.98rem; color:var(--ink); margin:1.1em 0 0.3em; }
+  .accordion-panel-inner h6{ font-family:var(--font-body); font-weight:700; font-style:italic; font-size:0.93rem; color:var(--ink); margin:0.9em 0 0.2em; }
+  .accordion-panel-inner p{ margin:0 0 0.85em; }
+
+  /* ---- Footer ---- */
+  .site-footer{ background:linear-gradient(165deg, var(--stone-900) 0%, var(--stone-800) 100%); color:rgba(255,253,246,0.75); padding:3.2em 0 2em; border-top:1px solid rgba(198,200,193,0.12); }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:2em; margin-bottom:2.2em; }
+  .footer-cols{ display:flex; gap:3.2em; flex-wrap:wrap; }
+  .footer-col h5{ font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass-light); margin-bottom:0.8em; }
+  .footer-col ul{ list-style:none; display:grid; gap:0.5em; font-size:0.9rem; }
+  .footer-col a{ text-decoration:none; opacity:0.85; }
+  .footer-col a:hover{ opacity:1; text-decoration:underline; }
+  .footer-bottom{ border-top:1px solid rgba(255,253,246,0.15); padding-top:1.3em; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.8em; font-size:0.78rem; font-family:var(--font-mono); }
+
+  .to-top{ position:fixed; right:1.3em; bottom:1.3em; z-index:90; width:46px; height:46px; border-radius:50%; background:var(--cinder); color:var(--white); border:none; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow); opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity var(--dur) var(--ease), transform var(--dur) var(--ease), background var(--dur) var(--ease); cursor:pointer; }
+  .to-top.visible{ opacity:1; pointer-events:auto; transform:none; }
+  .to-top:hover{ background:var(--cinder-dark); }
+  .to-top svg{ width:19px; height:19px; }
+</style>
+</head>
+<body>
+
+<a class="visually-hidden" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header concrete-texture" id="siteHeader">
+  <div class="container header-inner">
+    <a class="logo" href="#start">
+      <img class="logo-img" src="images/logo-olympia-eck.png" alt="Olympia-Eck" onerror="this.style.display='none'; this.closest('.logo').classList.add('logo-fallback');">
+      <span class="logo-fallback-mark">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <ellipse cx="32" cy="34" rx="26" ry="17" stroke="#B14B2C" stroke-width="4"/>
+          <ellipse cx="32" cy="34" rx="15" ry="9.5" stroke="#B08D46" stroke-width="3"/>
+        </svg>
+        <span><strong>Olympia-Eck</strong></span>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Menü öffnen">
+      <span class="nav-toggle-bar nav-toggle-bar--top" aria-hidden="true"></span>
+      <span class="nav-toggle-bar nav-toggle-bar--mid" aria-hidden="true"></span>
+      <span class="nav-toggle-bar nav-toggle-bar--bottom" aria-hidden="true"></span>
+    </button>
+    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+      <a href="#start">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
+        <span>Start</span>
+      </a>
+      <a href="#biergarten">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 20V10h9v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1Z"/><path d="M15 12h2a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-2"/><path d="M6 10 7 3h6l1 7"/></svg>
+        <span>Biergarten</span>
+      </a>
+      <a href="#speisekarte">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3v7a2 2 0 0 0 2 2v9M6 3v7M9 3v7M18 3c-1.7 1-2 3-2 5v3h2v10"/></svg>
+        <span>Speisekarte</span>
+      </a>
+      <a href="#gruppen">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="7" r="3.2"/><path d="M2 21v-1c0-3 3-5.5 7-5.5s7 2.5 7 5.5v1"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M15 21v-1c0-2 1.6-4 4-4.6"/></svg>
+        <span>Anfragen</span>
+      </a>
+      <a href="#oeffnungszeiten">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <span>Öffnungszeiten</span>
+      </a>
+      <a href="#anfahrt">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-4.6-9.5-9C.7 8.3 2.3 4 6.2 4c2 0 3.4 1 4.8 2.7C12.4 5 13.8 4 15.8 4c3.9 0 5.5 4.3 3.7 8-2.5 4.4-9.5 9-9.5 9z"/></svg>
+        <span>Anfahrt</span>
+      </a>
+    </nav>
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<main id="main">
+
+  <!-- ============ HERO / STARTSEITE ============ -->
+  <section class="hero" id="start">
+    <div class="hero-carousel" id="heroCarousel">
+      <div class="hero-slide is active" data-slide="0">
+        <img src="olympiaeck.jpg" alt="Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+        <div class="slot-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+          <span>Platzhalter — images/hero-1.jpg<br>(Biergarten mit Stadionblick, quer, hochauflösend)</span>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="1">
+        <img src="veranstaltung_raum.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Veranstaltungsraum im Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+        <div class="slot-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+          <span>Platzhalter — images/hero-2.jpg<br>(Veranstaltungsräume)</span>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="2">
+        <img src="bistro.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Bistro-Bereich des Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+        <div class="slot-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+          <span>Platzhalter — images/hero-3.jpg<br>(Gäste / Stimmung im Biergarten)</span>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="3">
+        <img src="Biergarten.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Biergarten des Olympia-Eck mit Blick auf das Olympiastadion" onerror="this.parentElement.classList.add('is-empty')">
+        <div class="slot-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+          <span>Platzhalter — images/hero-4.jpg<br>(Biergarten)</span>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="4">
+        <img src="eingang.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Eingang des Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+        <div class="slot-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+          <span>Platzhalter — images/hero-5.jpg<br>(Eingang / Atmosphäre)</span>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="5">
+        <img src="garten1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Garten des Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+        <div class="slot-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+          <span>Platzhalter — images/hero-6.jpg<br>(Garten)</span>
+        </div>
+      </div>
+      <div class="hero-carousel-gradient" aria-hidden="true"></div>
+      <div class="hero-dots" role="tablist" aria-label="Bildergalerie">
+        <button class="hero-dot active" role="tab" aria-selected="true" aria-label="Bild 1 zeigen" data-goto="0"></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Bild 2 zeigen" data-goto="1"></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Bild 3 zeigen" data-goto="2"></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Bild 4 zeigen" data-goto="3"></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Bild 5 zeigen" data-goto="4"></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Bild 6 zeigen" data-goto="5"></button>
+      </div>
+    </div>
+    <div class="container hero-content">
+      <div class="overlay-content" style="position:static;">
+        <p class="tagline"><strong>Imbiss · Biergarten · Veranstaltungen</strong></p>
+        <h1>Olympia-Eck</h1>
+        <div class="hero-lines">
+          <p>Direkt am Olympiastadion Berlin.</p>
+          <p>Die letzte Anlaufstelle vor dem Südtor.</p>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#speisekarte">Speisekarte</a>
+          <a class="btn btn-ghost" href="#anfahrt">Anfahrt</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lane-divider" role="presentation"></div>
+
+  <!-- ============ UNSERE LAGE ============ -->
+  <section id="lage">
+    <div class="container split reveal">
+      <div class="split-copy">
+        <p class="eyebrow eyebrow-stone"><strong>Direkt am Olympiastadion</strong></p>
+        <h2><strong>UNSERE LAGE</strong></h2>
+        <p> <strong>Das Olympia-Eck liegt direkt am Olympiastadion Berlin und ist die letzte Anlaufstelle vor dem Südtor.</strong></p>
+      </div>
+      <div class="split-media">
+        <div class="photo-slot is active" style="--ar:5/4;">
+          <img src="olympiaeck.jpg" alt="Olympia-Eck am Südtor des Olympiastadions" onerror="this.parentElement.classList.add('is-empty')">
+          <div class="slot-fallback">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+            <span>Platzhalter — images/lage-suedtor.jpg<br>(Außenansicht Richtung Südtor)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OLYMPIASTADION & WALDBÜHNE ============ -->
+  <section class="section-dark concrete-texture on-dark" id="veranstaltungstage">
+    <div class="container reveal">
+      <p class="eyebrow on-dark">VOR UND NACH DEN VERANSTALTUNGEN ZUM OLYMPIA-ECK</p>
+      <h2><strong>DAS OLYMPIASTADION ODER DIE WALDBÜHNE BESUCHEN?</strong></h2>
+      <p style="max-width:34em; font-size:1.08rem; color:rgba(255,253,246,0.85);">Das Olympia-Eck ist der Treffpunkt vor und nach den Veranstaltungen.</p>
+      <div class="event-cards">
+        <div class="event-card">
+          <span class="tag"><strong>Olympiastadion</strong></span>
+          <h3><strong>Vor &amp; nach den Veranstaltungen</strong></h3>
+          <p>Bei Veranstaltungen im Olympiastadion sind wir vor und nach den Veranstaltungen für unsere Gäste da. Wir öffnen mindestens 3–4 Stunden vor Veranstaltungsbeginn. An diesen Tagen gibt es ausschließlich Rostbratwurst &amp; Bouletten vom Holzkohlegrill.</p>
+        </div>
+        <div class="event-card">
+          <span class="tag"><strong>Waldbühne</strong></span>
+          <h3><strong>Vor den Veranstaltungen</strong></h3>
+          <p>Wir öffnen mindestens 3–4 Stunden vor den Veranstaltungen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIERGARTEN ============ -->
+  <section id="biergarten" style="padding:0;">
+    <div class="photo-slot photo-slot--overlay is active" style="--ar:auto; min-height:560px; border-radius:0;">
+      <img src="Biergarten.jpg" alt="Großer Biergarten des Olympia-Eck mit Blick auf das Stadion" onerror="this.parentElement.classList.add('is-empty')">
+      <div class="slot-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+        <span>Platzhalter — images/biergarten-weit.jpg<br>(Biergarten möglichst weiträumig, mit Stadionblick)</span>
+      </div>
+      <div class="overlay-content container" style="justify-content:flex-end; padding-bottom:3em;">
+        <p class="eyebrow on-dark" style="font-weight:700; color:#FFFDF6;">UNSER BIERGARTEN</p>
+        <h2 style="color:var(--white); font-size:clamp(2.6rem,6vw,4.4rem);"><strong>FÜR CA. 300 GÄSTE.</strong></h2>
+      </div>
+    </div>
+    <div class="container reveal" style="padding-top:3em;">
+      <p style="max-width:36em; font-size:1.05rem; color:var(--ink-soft);">Direkt am Olympiastadion und mit Blick auf das Stadion bietet unser großer Biergarten viel Platz für Gäste, Gruppen und Veranstaltungen. Im Innenbereich stehen zusätzlich ca. 50 Plätze zur Verfügung. Die Gastronomie funktioniert komplett auf Selbstbedienungsbasis.</p>
+      <div class="scoreboard" style="margin-top:2em;">
+        <div class="score-cell"><span class="score-num" data-target="300">0</span><span class="score-label">Plätze im Biergarten</span></div>
+        <div class="score-cell"><span class="score-num" data-target="50">0</span><span class="score-label">Plätze im Innenbereich</span></div>
+        <div class="score-cell"><span class="score-num" data-target="30">0</span><span class="score-label">Ab dieser Gruppengröße reservierbar</span></div>
+        <div class="score-cell"><span class="score-num" data-target="4">0</span><span class="score-label">(3-4) Std. vor Veranstaltungsbeginn geöffnet</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEISEN ============ -->
+  <section id="speisekarte">
+    <div class="container split reverse reveal">
+      <div class="split-copy">
+        <p class="eyebrow"><strong>UNSERE SPEISEN</strong></p>
+        <h2><strong>IMBISS &amp; SNACKS</strong></h2>
+        <p>Im Olympia-Eck gibt es klassische Imbissgerichte, Snacks, Getränke und vieles mehr.</p>
+        <a class="btn btn-outline" href="#menu">Speisekarte ansehen</a>
+      </div>
+      <div class="split-media">
+        <div class="photo-slot is active" style="--ar:5/4;">
+          <img src="currywurst.jpg" alt="Currywurst und Pommes vom Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+          <div class="slot-fallback">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+            <span>Platzhalter — images/speisen-currywurst.jpg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="menu" style="margin-top:3em;">
+      <div role="tablist" aria-label="Speisekarten-Kategorien" class="menu-tabs reveal">
+        <button class="menu-tab" role="tab" id="tab-imbiss" aria-controls="panel-imbiss" aria-selected="true">Speisekarte</button>
+        <button class="menu-tab" role="tab" id="tab-grill" aria-controls="panel-grill" aria-selected="false">Veranstaltungstage im Stadion</button>
+      </div>
+
+      <div class="menu-panel active" id="panel-imbiss" role="tabpanel" aria-labelledby="tab-imbiss">
+        <ul class="menu-list">
+          <li>Currywurst mit Darm</li>
+          <li>Currywurst ohne Darm</li>
+          <li>Boulette</li>
+          <li>Chicken Nuggets (6 Stück)</li>
+          <li>Chicken Nuggets (12 Stück)</li>
+          <li>Schnitzel</li>
+          <li>Pommes</li>
+          <li>Kartoffelsalat</li>
+          <li>Ketchup</li>
+          <li>Majonaise</li>
+          <li>Brötchen</li>
+        </ul>
+        <p class="menu-note">Fragen zu Allergenen in Speisen und Getränken beantwortet Ihnen gerne unser geschultes Servicepersonal vor Ort.</p>
+      </div>
+
+      <div class="menu-panel" id="panel-grill" role="tabpanel" aria-labelledby="tab-grill" hidden>
+        <p style="max-width:34em; color:var(--ink-soft); margin-bottom:1.2em;">An Veranstaltungstagen im Olympiastadion gibt es keine reguläre Speisekarte - ausschließlich Rostbratwurst &amp; Bouletten vom Holzkohlegrill im Außenbereich.</p>
+        <ul class="menu-list">
+          <li>Rostbratwurst vom Holzkohlegrill</li>
+          <li>Bouletten vom Holzkohlegrill</li>
+        </ul>
+        <p class="menu-note">Fragen zu Allergenen in Speisen und Getränken beantwortet Ihnen gerne unser geschultes Servicepersonal vor Ort.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOLZKOHLEGRILL ============ -->
+  <section class="grill-band" id="grill">
+    <div class="photo-slot photo-slot--overlay is active" style="border-radius:0;">
+      <img src="grill.jpg" alt="Holzkohlegrill mit Rostbratwürstchen und Buletten" onerror="this.parentElement.classList.add('is-empty')">
+      <div class="slot-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+        <span>Platzhalter — images/holzkohlegrill.jpg<br>(Grill in Aktion, auffällig/appetitlich)</span>
+      </div>
+      <div class="overlay-content container" style="justify-content:center;">
+        <div class="grill-inner">
+          <p class="eyebrow on-dark"><strong>Veranstaltungstagen im Stadion</strong></p>
+          <h2><strong>HOLZKOHLEGRILL</strong></h2>
+          <p>An Veranstaltungstagen im Olympiastadion gibt es keine reguläre Speisekarte - ausschließlich Rostbratwurst &amp; Bouletten vom Holzkohlegrill im Außenbereich.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRUPPEN & VERANSTALTUNGEN ============ -->
+  <section class="section-green on-dark" id="gruppen">
+    <div class="container split reveal">
+      <div class="split-copy">
+        <p class="eyebrow on-dark"><strong>GRUPPEN &amp; VERANSTALTUNGEN</strong></p>
+        <h2><strong>SIE MÖCHTEN MIT EINER GRUPPE ZU UNS KOMMEN?</strong></h2>
+        <p>Unser Biergarten bietet Platz für ca. 300 Gäste und eignet sich auch für Gruppen ab 30 Personen, Feiern und Grillveranstaltungen.</p>
+        <p>Reservierungen sind ausschließlich für Gruppen ab 30 Personen mit Vorbestellung möglich und ausdrücklich erwünscht.</p>
+        <a class="btn btn-primary" href="mailto:info@olympia-eck.de?subject=Gruppenanfrage%20Olympia-Eck&body=Datum%3A%0APersonenzahl%3A%0AAnlass%3A%0A">Gruppenanfrage</a>
+      </div>
+      <div class="split-media">
+        <div class="photo-slot is active" style="--ar:5/4;">
+          <img src="veranstaltung_raum.jpg" alt="Gruppe im Biergarten des Olympia-Eck" onerror="this.parentElement.classList.add('is-empty')">
+          <div class="slot-fallback">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+            <span>Platzhalter — images/gruppen-veranstaltung.jpg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESERVIERUNGEN – WICHTIGER HINWEIS ============ -->
+  <div class="alert-band">
+    <div class="container alert-inner reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+      <div>
+        <h3><strong>Hinweis zu Reservierungen</strong></h3>
+        <p>An Veranstaltungstagen im Olympiastadion und bei Veranstaltungen in der Waldbühne sind keine Reservierungen möglich.</p>
+        <p>Reservierungen bieten wir ausschließlich für Gruppen ab 30 Personen mit Vorbestellung an.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ÖFFNUNGSZEITEN ============ -->
+  <section id="oeffnungszeiten">
+    <div class="container reveal">
+      <p class="eyebrow"><strong>Öffnungszeiten</strong></p>
+      <h2 style="margin-bottom:1em;"><strong>WIR FÜR SIE DA SIND</strong></h2>
+      <div class="hours-grid">
+        <div class="hours-card">
+          <h3> <strong>Regulär</strong></h3>
+          <div class="hours-row"><span>Montag – Freitag</span><span>10:00 – 18:00 Uhr</span></div>
+        </div>
+        <div class="hours-card">
+          <h3><strong>Veranstaltungstagen</strong></h3>
+          <p>An Veranstaltungstagen im Olympiastadion und in der Waldbühne richten sich unsere Öffnungszeiten nach den jeweiligen Veranstaltungen.</p>
+          <p style="margin-bottom:0;">Wir öffnen mindestens 3–4 Stunden vor Veranstaltungsbeginn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SELBSTBEDIENUNG ============ -->
+  <div class="strip">
+    <div class="container strip-inner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+      <p><strong>Selbstbedienung:</strong> Speisen und Getränke werden direkt an unseren Ausgabestellen bestellt und abgeholt.</p>
+    </div>
+  </div>
+
+  <div class="lane-divider" role="presentation"></div>
+
+  <!-- ============ ANFAHRT ============ -->
+  <section id="anfahrt">
+    <div class="container">
+      <p class="eyebrow eyebrow-stone reveal"><strong>Direkt vor dem Südtor</strong></p>
+      <h2 class="reveal" style="margin-bottom:1.3em;"><strong>OLYMPIA-ECK → DIREKT AM OLYMPIASTADION BERLIN</strong></h2>
+      <div class="visit-grid reveal">
+        <div class="visit-cards">
+          <a class="visit-card visit-card--link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.6-9.5-9C.7 8.3 2.3 4 6.2 4c2 0 3.4 1 4.8 2.7C12.4 5 13.8 4 15.8 4c3.9 0 5.5 4.3 3.7 8-2.5 4.4-9.5 9-9.5 9z"/></svg>
+            <div>
+              <h4>Adresse</h4>
+              <p>Flatowallee 28<br>14055 Berlin</p>
+              <span class="south-gate-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18M5 3h11l-2 4 2 4H5"/></svg>
+                Direkt vor dem Südtor des Olympiastadions
+              </span>
+            </div>
+          </a>
+          <div class="visit-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2z"/></svg>
+            <div>
+              <h4>Telefon</h4>
+              <p><a href="tel:+49303044207">030 - 304 42 07</a></p>
+            </div>
+          </div>
+          <div class="visit-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 5 8 7 8-7"/></svg>
+            <div>
+              <h4>E-Mail</h4>
+              <p><a href="mailto:info@olympia-eck.de">info@olympia-eck.de</a></p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="photo-slot anfahrt-photo" style="--ar:auto;">
+          <img src="map.jpg" alt="Olympia-Eck von außen, direkt am Südtor des Olympiastadions" onerror="this.parentElement.classList.add('is-empty')">
+          <div class="slot-fallback">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m3 16 5-4 4 3 4-5 5 6"/></svg>
+            <span>Platzhalter — map.jpg<br>(Außenansicht / Umgebung Richtung Südtor)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPRESSUM & DATENSCHUTZ ============ -->
+  <section id="impressum" style="padding-top:0;">
+    <div class="container">
+      <div class="legal-block reveal">
+  <div id="impressumAccordion">
+    <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-impressum">
+      Impressum vollständig anzeigen <span class="plus">+</span>
+    </button>
+    <div class="accordion-panel" id="panel-impressum">
+      <div class="accordion-panel-inner">
+        <dl class="impressum-card">
+          <dd>Angaben gemäß § 5 DDG</dd><br>
+          <dd>Olympia-Eck</dd>
+          <dt>Inhaber:</dt><dd>Benjamin Renger</dd>
+          <dt>Anschrift:</dt><dd>Flatowallee 28 <br> 14055 Berlin</dd><br>
+          <dd>Kontakt</dd>
+          <dt>Telefon:</dt><dd><a href="tel:+49303044207">030 / 30 442 07</a></dd>
+          <dt>E-Mail:</dt><dd><a href="mailto:info@olympia-eck.de">info@olympia-eck.de</a></dd>
+          <dt>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:</dt><dd>DE298632698</dd>
+          <dt>Zuständige Aufsichtsbehörde:</dt><dd>Bezirksamt Charlottenburg-Wilmersdorf von Berlin</dd>
+          <dt>Verbraucherstreitbeilegung:</dt><dd>Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div id="legalAccordion">
+    <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-datenschutz">
+      Datenschutzerklärung vollständig anzeigen <span class="plus">+</span>
+    </button>
+          <div class="accordion-panel" id="panel-datenschutz">
+            <div class="accordion-panel-inner">
+              <h5>1. Datenschutz auf einen Blick</h5>
+              <h6>Allgemeine Hinweise</h6>
+              <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
+              <h6>Datenerfassung auf dieser Website</h6>
+              <p><em>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</em></p>
+              <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
+              <p><em>Wie erfassen wir Ihre Daten?</em></p>
+              <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.</p>
+              <p><em>Wofür nutzen wir Ihre Daten?</em></p>
+              <p>Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.</p>
+              <p><em>Welche Rechte haben Sie bezüglich Ihrer Daten?</em></p>
+              <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.</p>
+              <p>Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
+
+              <h5>2. Hosting und Content Delivery Networks (CDN)</h5>
+              <h6>Externes Hosting</h6>
+              <p>Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
+              <p>Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).</p>
+              <p>Unser Hoster wird Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.</p>
+              <p><em>Abschluss eines Vertrages über Auftragsverarbeitung</em></p>
+              <p>Um die datenschutzkonforme Verarbeitung zu gewährleisten, haben wir einen Vertrag über Auftragsverarbeitung mit unserem Hoster geschlossen.</p>
+
+              <h5>3. Allgemeine Hinweise und Pflichtinformationen</h5>
+              <h6>Datenschutz</h6>
+              <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+              <p>Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.</p>
+              <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+              <h6>Hinweis zur verantwortlichen Stelle</h6>
+              <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+              <p>Benjamin Renger<br>Flatowallee 28<br>14055 Berlin<br>Telefon: 030/3044207<br>E-Mail: info@olympia-eck.de</p>
+              <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</p>
+              <h6>Widerruf Ihrer Einwilligung zur Datenverarbeitung</h6>
+              <p>Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
+              <h6>Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)</h6>
+              <p>Wenn die Datenverarbeitung auf Grundlage von Art. 6 Abs. 1 lit. e oder f DSGVO erfolgt, haben Sie jederzeit das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen; dies gilt auch für ein auf diese Bestimmungen gestütztes Profiling. Die jeweilige Rechtsgrundlage, auf denen eine Verarbeitung beruht, entnehmen Sie dieser Datenschutzerklärung. Wenn Sie Widerspruch einlegen, werden wir Ihre betroffenen personenbezogenen Daten nicht mehr verarbeiten, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen (Widerspruch nach Art. 21 Abs. 1 DSGVO).</p>
+              <p>Werden Ihre personenbezogenen Daten verarbeitet, um Direktwerbung zu betreiben, so haben Sie das Recht, jederzeit Widerspruch gegen die Verarbeitung Sie betreffender personenbezogener Daten zum Zwecke derartiger Werbung einzulegen; dies gilt auch für das Profiling, soweit es mit solcher Direktwerbung in Verbindung steht. Wenn Sie widersprechen, werden Ihre personenbezogenen Daten anschließend nicht mehr zum Zwecke der Direktwerbung verwendet (Widerspruch nach Art. 21 Abs. 2 DSGVO).</p>
+              <h6>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h6>
+              <p>Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.</p>
+              <h6>Recht auf Datenübertragbarkeit</h6>
+              <p>Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.</p>
+              <h6>SSL- bzw. TLS-Verschlüsselung</h6>
+              <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile. Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.</p>
+              <h6>Auskunft, Löschung und Berichtigung</h6>
+              <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
+              <h6>Recht auf Einschränkung der Verarbeitung</h6>
+              <p>Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen: Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen; für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung zu verlangen. Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen. Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung zu verlangen. Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden; solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung zu verlangen.</p>
+              <p>Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.</p>
+              <p style="font-size:0.8rem; opacity:0.75;">Quelle: <a href="https://www.e-recht24.de/muster-datenschutzerklaerung.html" target="_blank" rel="noopener">e-recht24.de – Muster-Datenschutzerklärung</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer concrete-texture">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#start">
+          <img class="logo-img" src="images/logo-olympia-eck.png" alt="Olympia-Eck" onerror="this.style.display='none'; this.closest('.logo').classList.add('logo-fallback');">
+          <span class="logo-fallback-mark">
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <ellipse cx="32" cy="34" rx="26" ry="17" stroke="#B14B2C" stroke-width="4"/>
+              <ellipse cx="32" cy="34" rx="15" ry="9.5" stroke="#B08D46" stroke-width="3"/>
+            </svg>
+            <span><strong>OLYMPIA-ECK</strong></span>
+          </span>
+        </a>
+        <p style="max-width:22em; font-size:0.9rem;">Direkt am Olympiastadion Berlin → Die letzte Anlaufstelle vor dem Südtor.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#biergarten">Biergarten</a></li>
+            <li><a href="#speisekarte">Speisekarte</a></li>
+            <li><a href="#gruppen">Gruppen &amp; Veranstaltungen</a></li>
+            <li><a href="#anfahrt">Anfahrt</a></li>
+            <li><a href="#impressum">Impressum &amp; Datenschutz</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Kontakt</h5>
+          <ul>
+            <li><a href="tel:+49303044207">030-304 42 07</a></li>
+            <li><a href="mailto:info@olympia-eck.de">info@olympia-eck.de</a></li>
+            <li>Flatowallee 28, 14055 Berlin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Benjamin Renger · Olympia-Eck</span>
+      <span>Amtsgericht Berlin-Charlottenburg</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Nach oben scrollen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- Hero carousel: 4 photos auto-crossfading ---- */
+  var carousel = document.getElementById('heroCarousel');
+  if (carousel){
+    var slides = Array.prototype.slice.call(carousel.querySelectorAll('.hero-slide'));
+    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.hero-dot'));
+    var current = 0;
+    var timer = null;
+    var reduceMotionHero = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ 
+    // Load hero photos 2-5 one at a time in the background, instead of
+    // all at once alongside slide 1. On a slow connection, requesting
+    // 5 full-size photos simultaneously means every one of them —
+    // including the one already on screen — loads slowly. Loading them
+    // one after another lets each finish quickly and be ready well
+    // before its turn comes up in the rotation.
+    var loadQueue = slides
+      .map(function(slide){ return slide.querySelector('img[data-src]'); })
+      .filter(Boolean);
+    function loadNextQueued(){
+      var img = loadQueue.shift();
+      if (!img) return;
+      function done(){ img.removeEventListener('load', done); img.removeEventListener('error', done); loadNextQueued(); }
+      img.addEventListener('load', done);
+      img.addEventListener('error', done);
+      img.src = img.getAttribute('data-src');
+    }
+    loadNextQueued();
+
+    function goTo(index){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-selected', 'false');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-selected', 'true');
+    }
+    function next(){ goTo(current + 1); }
+    function startAuto(){
+      if (reduceMotionHero) return;
+      stopAuto();
+      timer = setInterval(next, 5000);
+    }
+    function stopAuto(){ if (timer){ clearInterval(timer); timer = null; } }
+
+    dots.forEach(function(dot){
+      dot.addEventListener('click', function(){
+        goTo(parseInt(dot.getAttribute('data-goto'), 10));
+        startAuto();
+      });
+    });
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    carousel.addEventListener('focusin', stopAuto);
+    carousel.addEventListener('focusout', startAuto);
+
+    startAuto();
+  }
+
+  var header = document.getElementById('siteHeader');
+  var toTop = document.getElementById('toTop');
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    header.classList.toggle('scrolled', y > 40);
+    toTop.classList.toggle('visible', y > 700);
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+  toTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+
+  /* ---------------------------------------------------------------
+     Mobile navigation: slide-in menu with a dimmed backdrop, a focus
+     trap while open, and body-scroll locking. No inline handlers, no
+     innerHTML, nothing built from untrusted input — plain DOM APIs
+     and a couple of small named functions.
+     --------------------------------------------------------------- */
+  var navToggle = document.getElementById('navToggle');
+  var mainNav = document.getElementById('mainNav');
+  var navBackdrop = document.getElementById('navBackdrop');
+  var navIsOpen = false;
+
+  function getNavFocusables(){
+    return Array.prototype.slice.call(mainNav.querySelectorAll('a'));
+  }
+
+  function openNav(){
+    if (navIsOpen) return;
+    navIsOpen = true;
+    mainNav.classList.add('open');
+    navBackdrop.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'Menü schließen');
+    document.body.classList.add('nav-lock');
+    document.addEventListener('keydown', handleNavKeydown);
+    var first = getNavFocusables()[0];
+    if (first) first.focus();
+  }
+
+  function closeNav(returnFocus){
+    if (!navIsOpen) return;
+    navIsOpen = false;
+    mainNav.classList.remove('open');
+    navBackdrop.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Menü öffnen');
+    document.body.classList.remove('nav-lock');
+    document.removeEventListener('keydown', handleNavKeydown);
+    if (returnFocus !== false) navToggle.focus();
+  }
+
+  function handleNavKeydown(e){
+    if (e.key === 'Escape'){ closeNav(); return; }
+    if (e.key !== 'Tab') return;
+    var items = getNavFocusables();
+    if (!items.length) return;
+    var firstItem = items[0];
+    var lastItem = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === firstItem){
+      e.preventDefault();
+      lastItem.focus();
+    } else if (!e.shiftKey && document.activeElement === lastItem){
+      e.preventDefault();
+      firstItem.focus();
+    }
+  }
+
+  navToggle.addEventListener('click', function(){
+    if (navIsOpen) closeNav(); else openNav();
+  });
+  getNavFocusables().forEach(function(link){
+    link.addEventListener('click', function(){ closeNav(false); });
+  });
+
+  // Tap/click anywhere outside the open menu (and outside the toggle
+  // itself) closes it. Listening on `document` — rather than relying on
+  // the backdrop element's own size — means this keeps working even if
+  // an ancestor's stacking/filter context ever changes the backdrop's
+  // effective coverage.
+  document.addEventListener('click', function(e){
+    if (!navIsOpen) return;
+    var target = e.target;
+    var clickedInsideNav = mainNav.contains(target);
+    var clickedToggle = navToggle.contains(target);
+    if (!clickedInsideNav && !clickedToggle) closeNav();
+  });
+
+  var navLinks = Array.prototype.slice.call(mainNav.querySelectorAll('a'));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var id = '#' + entry.target.id;
+        var link = navLinks.find(function(a){ return a.getAttribute('href') === id; });
+        if (!link) return;
+        if (entry.isIntersecting){
+          navLinks.forEach(function(l){ l.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    sections.forEach(function(s){ spy.observe(s); });
+  }
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var reveal = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ entry.target.classList.add('in-view'); obs.unobserve(entry.target); }
+      });
+    }, { threshold:0.12 });
+    revealEls.forEach(function(el){ reveal.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    if (reduceMotion || isNaN(target)){ el.textContent = target; return; }
+    var start = null, duration = 1100;
+    function step(ts){
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step); else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+  var scoreNums = document.querySelectorAll('.score-num');
+  if ('IntersectionObserver' in window){
+    var scoreObs = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ animateCount(entry.target); obs.unobserve(entry.target); }
+      });
+    }, { threshold:0.6 });
+    scoreNums.forEach(function(el){ scoreObs.observe(el); });
+  } else { scoreNums.forEach(animateCount); }
+
+  var tabs = document.querySelectorAll('.menu-tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected','false'); });
+      tab.setAttribute('aria-selected','true');
+      document.querySelectorAll('.menu-panel').forEach(function(panel){
+        var match = panel.id === tab.getAttribute('aria-controls');
+        panel.classList.toggle('active', match);
+        panel.hidden = !match;
+      });
+    });
+    tab.addEventListener('keydown', function(e){
+      var list = Array.prototype.slice.call(tabs);
+      var idx = list.indexOf(tab);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+        e.preventDefault();
+        var next = e.key === 'ArrowRight' ? (idx+1) % list.length : (idx-1+list.length) % list.length;
+        list[next].focus(); list[next].click();
+      }
+    });
+  });
+
+  document.querySelectorAll('.accordion-trigger').forEach(function(trigger){
+    var panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    trigger.addEventListener('click', function(){
+      var expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? '0px' : panel.scrollHeight + 'px';
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
